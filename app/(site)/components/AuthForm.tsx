@@ -1,4 +1,5 @@
 'use client';
+import axios from 'axios';
 import {BsGithub, BsGoogle} from 'react-icons/bs';
 import { useCallback, useState } from 'react';
 import { 
@@ -39,7 +40,7 @@ const AuthForm = () => {
         setIsLoading(true);
 
         if (variant === 'REGISTER') {
-            // Axios Register
+            axios.post('/api/register', data)
         }
 
         if (variant === 'LOGIN') {
@@ -84,7 +85,7 @@ const AuthForm = () => {
                     />
                     )}
                     <Input 
-                        id="name" 
+                        id="email" 
                         label="Email address"
                         type ="email"
                         register={register} 
