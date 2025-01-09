@@ -22,11 +22,10 @@ const AuthForm = () => {
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
-        if (typeof window !== 'undefined' && session?.status === 'authenticated') {
+        if (session?.status === 'authenticated'){
             router.push('/users');
         }
-    }, [session?.status, router]);
-    
+    },[session?.status,router]);
 
     const toggleVariant = useCallback(() => {
         if (variant === 'LOGIN') {
