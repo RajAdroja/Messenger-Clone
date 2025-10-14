@@ -3,6 +3,8 @@ import { useCallback, useState } from 'react';
 import { FieldValues, useForm, SubmitHandler } from 'react-hook-form';
 import Input from '../../../app/components/inputs/Input';
 import Button from '../../../app/components/Button';
+import AuthSocialButton from '../components/AuthSocialButton';
+import { BsGithub, BsGoogle } from 'react-icons/bs';
 
 type variant = 'LOGIN' | 'REGISTER';
 
@@ -111,6 +113,28 @@ const AuthForm = () => {
             >
               <div className="w-full border-t border-gray-300" />
             </div>
+            <div
+              className="
+            relative
+            flex
+            justify-center
+            text-sm
+            "
+            >
+              <span className="bg-white px-2 text-gray-500">
+                Or continue with
+              </span>
+            </div>
+          </div>
+          <div className="mt-6 flex gap-2">
+            <AuthSocialButton
+              icon={BsGithub}
+              onClick={() => socialAction('github')}
+            />
+            <AuthSocialButton
+              icon={BsGoogle}
+              onClick={() => socialAction('github')}
+            />
           </div>
         </div>
       </div>
