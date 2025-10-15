@@ -8,6 +8,7 @@ import { BsGithub, BsGoogle } from 'react-icons/bs';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
 import { signIn } from 'next-auth/react';
+import { sign } from 'crypto';
 
 type variant = 'LOGIN' | 'REGISTER';
 
@@ -66,7 +67,17 @@ const AuthForm = () => {
   const socialAction = (action: string) => {
     setIsLoading(true);
 
-    // NextAuth Social SignIn
+    signIn(action, { redirect: false })
+      .then((callback) => {
+        if (callback?.error) {
+          toast.error('Invalid credentials!');
+        }
+
+        if (callback?.ok && !callback?.error) {
+          toast.success('Logged in successfully!');
+        }
+      })
+      .finally(() => setIsLoading(false));
   };
 
   return (
@@ -152,7 +163,7 @@ const AuthForm = () => {
             />
             <AuthSocialButton
               icon={BsGoogle}
-              onClick={() => socialAction('github')}
+              onClick={() => socialAction('google')}
             />
           </div>
         </div>
