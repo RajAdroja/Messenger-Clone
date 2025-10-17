@@ -1,36 +1,25 @@
-import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
-import './globals.css';
-import { Toaster } from 'react-hot-toast';
+import { Inter } from 'next/font/google';
+
 import ToasterContext from './context/ToasterContext';
 import AuthContext from './context/AuthContext';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-});
+import './globals.css';
 
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
-});
+const inter = Inter({ subsets: ['latin'] });
 
-export const metadata: Metadata = {
-  title: 'Messenger',
-  description: 'messenger clone built with nextjs 13 and tailwindcss',
+export const metadata = {
+  title: 'Messenger Clone',
+  description: 'Messenger Clone',
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
-      <body
-        suppressHydrationWarning
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={inter.className}>
         <AuthContext>
           <ToasterContext />
           {children}
